@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  isaac_env:
+    build: .
+    container_name: isaac_gpu_gui
+    runtime: nvidia
+    environment:
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - NVIDIA_DRIVER_CAPABILITIES=all
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - ${HOME}/.Xauthority:/root/.Xauthority
+      - ~/Documents/docker_folder/isaac_proj:/root/Documents/docker_folder/isaac_proj
+    network_mode: host
+    ipc: host
+    stdin_open: true
+    tty: true
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
