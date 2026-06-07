@@ -1,19 +1,20 @@
 version: "3.9"
 
 services:
-  isaac_env:
+  isaacsim_env:
     build: ./isaac
-    container_name: isaac_gpu_gui
+    container_name: isaacsim_gpu_gui
     runtime: nvidia
     environment:
       - DISPLAY=${DISPLAY}
       - ACCEPT_EULA=Y
       - QT_X11_NO_MITSHM=1
       - NVIDIA_DRIVER_CAPABILITIES=all
+      - OMNI_KIT_ALLOW_ROOT=1
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ${HOME}/.Xauthority:/root/.Xauthority
-      - ~/Documents/docker_folder/isaac_proj:/root/isaac_proj
+      - ~/Documents/docker_folder/isaacsim_proj:/root/isaacsim_proj
     network_mode: host
     ipc: host
     stdin_open: true
@@ -21,7 +22,7 @@ services:
 
   ros2_env:
     build: ./ros2
-    container_name: ros2_gui
+    container_name: ros2_gpu_gui
     runtime: nvidia
     environment:
       - DISPLAY=${DISPLAY}
@@ -32,7 +33,7 @@ services:
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ${HOME}/.Xauthority:/root/.Xauthority
-      - ~/Documents/docker_folder/isaac_proj:/root/isaac_proj
+      - ~/Documents/docker_folder/ros2_proj:/root/ros2_proj
     network_mode: host
     ipc: host
     stdin_open: true
