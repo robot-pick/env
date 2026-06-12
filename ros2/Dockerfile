@@ -13,7 +13,9 @@ RUN apt-get update && apt-get install -y \
 RUN apt-get update && apt-get install -y \
     ros-jazzy-xacro \
     ros-jazzy-joint-state-publisher-gui \
-    ros-jazzy-moveit*
+    ros-jazzy-moveit* \
+    ros-jazzy-ros2-control \
+    ros-jazzy-ros2-controllers
 
 # locale
 RUN locale-gen en_US en_US.UTF-8
