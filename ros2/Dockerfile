@@ -9,6 +9,8 @@ RUN apt-get update && apt-get install -y \
     lsb-release \
     locales \
     git \
+    vim \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
 RUN apt-get update && apt-get install -y \
@@ -35,5 +37,9 @@ RUN locale-gen en_US en_US.UTF-8
 ENV LANG=en_US.UTF-8
 
 RUN echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc
+
+# python package
+ENV PIP_INDEX_URL=https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip3 install --no-cache-dir --break-system-packages "osam>=0.2.5"
 
 CMD ["bash"]
